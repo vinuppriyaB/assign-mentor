@@ -3,7 +3,12 @@ import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+
+
 export function AddMentor(){
+  const [popper,setpopper] = useState(false);
+  
+
     const[mentorName,setMentorName]=useState("");
    const addmentor=()=>{
     fetch("https://class-task.herokuapp.com/studentmentor/mentor/add", {
@@ -16,6 +21,17 @@ export function AddMentor(){
           {
             window.alert("MentorName already exist");
           }
+          else
+          {
+            setpopper(true);
+            setTimeout(()=>{
+              setpopper(false);
+
+            },2000)
+
+          }
+         
+
           setMentorName("");
         })
         .catch((e) => console.log("ERROR"));
@@ -47,7 +63,15 @@ export function AddMentor(){
            >submit</Button>
 
           </div>
+          { popper ? 
+            <div className="popbox">
+              <p>Updated successfully</p></div>
+             :"" }
+       
+     
+          
            
         </div>
     )
 }
+

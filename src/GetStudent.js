@@ -13,12 +13,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 export function GetStudent()
 {
+  const [popper,setpopper] = useState(false);
     const[studentData,setStudentData]=useState("");
     const [selectedMentor,setSelectedMentor ] = useState("");
     const [selectedStudent,setSelectedStudent ] = useState("");
     const[apifetch,setapifetch]=useState(true);
 
     const getStudent=()=>{
+     
         fetch("https://class-task.herokuapp.com/studentmentor/student/get",
         {method:"GET",})
         .then((data)=>data.json())
@@ -35,12 +37,12 @@ export function GetStudent()
       const[mentorData,setMentorData]=useState("");
    
 
-    const getMentor=()=>{
+      const getMentor=()=>{
         fetch("https://class-task.herokuapp.com/studentmentor/mentor/get",
         {method:"GET",})
         .then((data)=>data.json())
         .then((mvs)=>{
-            
+           
             setMentorData(mvs)
         }).catch(e=>console.log("error"))
                
@@ -62,6 +64,11 @@ export function GetStudent()
               headers:{"Content-Type":"application/json"},
           }).then(()=>{
             setapifetch(!apifetch);
+            setpopper(true);
+            setTimeout(()=>{
+              setpopper(false);
+
+            },2000)
             
            
              
@@ -101,6 +108,10 @@ export function GetStudent()
            onClick={() => (sendSelectedname())}
            >submit</Button>
         </div>
+        { popper ? 
+            <div className="popbox">
+              <p>Updated successfully</p></div>
+             :"" }
         </div>
         
         

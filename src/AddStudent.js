@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 export function AddStudent(){
+  const [popper,setpopper] = useState(false);
     const[studentName,setStudentName]=useState("");
    const addstudent=()=>{
     fetch("https://class-task.herokuapp.com/studentmentor/student/add", {
@@ -15,6 +16,15 @@ export function AddStudent(){
         {
           window.alert("StudentName already exist");
         }
+        else
+          {
+            setpopper(true);
+            setTimeout(()=>{
+              setpopper(false);
+
+            },2000)
+
+          }
         setStudentName("");
       })
       .catch((e) => console.log(e));
@@ -46,6 +56,10 @@ export function AddStudent(){
            >submit</Button>
 
           </div>
+          { popper ? 
+            <div className="popbox">
+              <p>Updated successfully</p></div>
+             :"" }
            
         </div>
     )

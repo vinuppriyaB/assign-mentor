@@ -63,3 +63,25 @@ body{
   
 
 }
+
+
+
+
+   
+.popbox{
+  height: 100px;
+  width: 200px;
+ font-weight: bold;
+ font-size: 20px;
+  color: white;
+  position: absolute;
+  top:250px;
+  left: 900px;
+  text-align: center;
+  background-color:#f15275 ;
+  
+  border-radius: 20px;
+  padding: 5px;
+  
+  box-shadow: #f7a1b4 0px 3px 6px, #f7a1b4 0px 3px 6px;
+}

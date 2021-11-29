@@ -18,7 +18,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 export function GetMentor()
+
 {
+  const [popper,setpopper] = useState(false);
     const[studentData,setStudentData]=useState("");
     const [selectedMentor,setSelectedMentor ] = useState("");
     const [selectedStudent,setSelectedStudent ] = useState([]);
@@ -65,10 +67,14 @@ export function GetMentor()
               body: JSON.stringify(selectedname),
               headers:{"Content-Type":"application/json"},
           }).then(()=>{
-            setSelectedStudent([]);
             setapifetch(!apifetch);
-            
-            console.log(apifetch);
+            setSelectedStudent([]);
+            setpopper(true);
+            setTimeout(()=>{
+              setpopper(false);
+
+            },2000)
+           
            
              
           }).catch((e)=> console.log("ERROR"))  
@@ -108,6 +114,10 @@ export function GetMentor()
            onClick={() => (sendSelectedname())}
            >submit</Button>
         </div>
+        { popper ? 
+            <div className="popbox">
+              <p>Updated successfully</p></div>
+             :"" }
         </div>
         
         
